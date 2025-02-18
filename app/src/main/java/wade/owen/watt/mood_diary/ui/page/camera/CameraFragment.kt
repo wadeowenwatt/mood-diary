@@ -1,4 +1,4 @@
-package wade.owen.watt.mood_diary.ui.camera
+package wade.owen.watt.mood_diary.ui.page.camera
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

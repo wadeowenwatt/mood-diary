@@ -1,4 +1,4 @@
-package wade.owen.watt.mood_diary.ui.profile
+package wade.owen.watt.mood_diary.ui.page.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
