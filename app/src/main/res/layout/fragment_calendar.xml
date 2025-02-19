@@ -27,7 +27,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:itemCount="12"/>
+        android:paddingTop="16dp"
+        android:paddingBottom="10dp"
+        tools:listitem="@layout/list_item_chip"
+        tools:itemCount="1"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="#F9EFA7"
+        app:layout_constraintTop_toBottomOf="@id/month_list" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/year_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:paddingTop="10dp"
+        android:paddingBottom="16dp"
+        tools:listitem="@layout/list_item_chip"
+        tools:itemCount="1"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

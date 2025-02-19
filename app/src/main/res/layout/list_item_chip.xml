@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chip_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#87B09C"
+        app:cardCornerRadius="5dp">
+
+        <TextView
+            android:id="@+id/title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="January"
+            android:textSize="18sp"
+            android:textColor="#F9EFA7"
+            android:paddingBottom="3dp" />
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -12,14 +12,14 @@ import java.time.Month
 class MonthListAdapter(
     private val context: Context,
     private val monthList: List<Month>,
-    private val listener: OnMonthClickListener
+    private val listener: OnMonthClickListener,
 ) : RecyclerView.Adapter<MonthListAdapter.MonthViewHolder>() {
 
     inner class MonthViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val monthName: TextView = itemView.findViewById(R.id.month_name)
+        private val monthName: TextView = itemView.findViewById(R.id.title_item)
 
         fun bind(month: Month) {
-            monthName.text = month.name
+            monthName.text = month.name.lowercase().capitalize()
             itemView.setOnClickListener {
                 listener.onMonthClick(month)
             }
@@ -27,7 +27,7 @@ class MonthListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.list_item_month, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.list_item_chip, parent, false)
         return MonthViewHolder(view)
     }
 
