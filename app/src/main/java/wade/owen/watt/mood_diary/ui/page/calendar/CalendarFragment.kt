@@ -1,6 +1,5 @@
 package wade.owen.watt.mood_diary.ui.page.calendar
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,7 +13,6 @@ import wade.owen.watt.mood_diary.ui.component.HorizontalSpaceItemDecoration
 import wade.owen.watt.mood_diary.ui.page.calendar.recycle_view.MonthListAdapter
 import wade.owen.watt.mood_diary.ui.page.calendar.recycle_view.YearListAdapter
 import java.time.Month
-import java.time.Year
 
 
 class CalendarFragment : Fragment() {
@@ -31,31 +29,40 @@ class CalendarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val monthData = Month.values().toList()
-        val monthListAdapter = MonthListAdapter(requireContext(), monthData, object : MonthListAdapter.OnMonthClickListener {
-            override fun onMonthClick(month: Month) {
-                Log.d("Calendar-List", "onMonthClick: $month")
-            }
-        })
+        val monthListAdapter = MonthListAdapter(
+            requireContext(),
+            0,
+            monthData,
+            onItemClick = { position: Int ->
+                Log.d("Calendar-List", "onMonthClick: $position")
+            },
+        )
 
-        val yearData = listOf("2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015")
-        val yearListAdapter = YearListAdapter(requireContext(), yearData, object : YearListAdapter.OnYearClickListener {
-            override fun onYearClick(year: String) {
-                Log.d("Calendar-List", "onMonthClick: $year")
-            }
-        })
+        val yearData =
+            listOf("2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015")
+        val yearListAdapter = YearListAdapter(
+            requireContext(),
+            0,
+            yearData,
+            onItemClick = { position: Int ->
+                Log.d("Calendar-List", "onMonthClick: $position")
+            },
+        )
 
         val listMonthRecyclerView: RecyclerView = view.findViewById(R.id.month_list)
 
         listMonthRecyclerView.addItemDecoration(HorizontalSpaceItemDecoration(16))
 
-        listMonthRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        listMonthRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         listMonthRecyclerView.adapter = monthListAdapter
 
         val listYearRecyclerView: RecyclerView = view.findViewById(R.id.year_list)
 
         listYearRecyclerView.addItemDecoration(HorizontalSpaceItemDecoration(16))
 
-        listYearRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        listYearRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         listYearRecyclerView.adapter = yearListAdapter
     }
 }

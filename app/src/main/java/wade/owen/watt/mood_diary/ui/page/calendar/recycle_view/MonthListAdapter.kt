@@ -4,24 +4,44 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import wade.owen.watt.mood_diary.R
 import java.time.Month
+import java.util.Locale
 
 class MonthListAdapter(
     private val context: Context,
+    private var selectedPosition: Int = 0,
     private val monthList: List<Month>,
-    private val listener: OnMonthClickListener,
+    private val onItemClick: (Int) -> Unit,
 ) : RecyclerView.Adapter<MonthListAdapter.MonthViewHolder>() {
 
     inner class MonthViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val monthName: TextView = itemView.findViewById(R.id.title_item)
+        private val chipItem: FrameLayout = itemView.findViewById(R.id.bg_item_chip)
 
-        fun bind(month: Month) {
-            monthName.text = month.name.lowercase().capitalize()
+        fun bind(month: Month, position: Int) {
+            monthName.text = month.name.lowercase()
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+
+            if (position == selectedPosition) {
+                chipItem.setBackgroundResource(R.drawable.bg_item_month_selected)
+                monthName.setTextColor(context.getColor(R.color.highlight_color))
+            } else {
+                chipItem.setBackgroundResource(R.drawable.bg_item_month_unselected)
+                monthName.setTextColor(context.getColor(R.color.bg_color))
+            }
+
             itemView.setOnClickListener {
-                listener.onMonthClick(month)
+                val previousPos = selectedPosition
+                if (previousPos != position) {
+                    selectedPosition = position
+                    notifyItemChanged(previousPos)
+                    notifyItemChanged(selectedPosition)
+                    onItemClick(position)
+                }
             }
         }
     }
@@ -32,12 +52,9 @@ class MonthListAdapter(
     }
 
     override fun onBindViewHolder(holder: MonthViewHolder, position: Int) {
-        holder.bind(monthList[position])
+        holder.bind(monthList[position], position)
+
     }
 
     override fun getItemCount(): Int = monthList.size
-
-    interface OnMonthClickListener {
-        fun onMonthClick(month: Month)
-    }
 }
