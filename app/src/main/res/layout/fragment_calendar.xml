@@ -51,5 +51,16 @@
         tools:listitem="@layout/list_item_chip"
         tools:itemCount="1"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/diary_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/year_list"
+        android:paddingBottom="16dp"
+        tools:listitem="@layout/list_item_diary"
+        tools:itemCount="1"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

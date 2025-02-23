@@ -8,4 +8,5 @@
     <color name="gray_600">#FF757575</color>
     <color name="highlight_color">#5B4810</color>
     <color name="bg_color">#F4ED9E</color>
+    <color name="active_color">#FB920E</color>
 </resources>

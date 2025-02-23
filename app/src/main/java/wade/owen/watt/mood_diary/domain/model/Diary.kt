@@ -1,4 +1,9 @@
 package wade.owen.watt.mood_diary.domain.model
 
-class Diary {
-}
+data class Diary (
+    val id: Int?,
+    val mood: Int?,
+    val title: String?,
+    val dateTime: String?,
+    val liked: Boolean?,
+)
