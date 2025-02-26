@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import wade.owen.watt.mood_diary.databinding.ActivityMainBinding
+import wade.owen.watt.mood_diary.ui.page.diary_dialog.DiaryDialogFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fab.setOnClickListener {
             Log.d("FAB", "ADD Diary")
+            val dialog = DiaryDialogFragment()
+            dialog.show(supportFragmentManager, "DiaryDialogFragment")
         }
         setUpBottomNav()
     }
